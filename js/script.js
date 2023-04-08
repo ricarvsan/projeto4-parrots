@@ -8,13 +8,13 @@ let timer = 0;
 let idTimer;
 
 let figuraCartas = [
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/explodyparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/fiestaparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/metalparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/revertitparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/tripletsparrot.gif" alt="">',
-    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/unicornparrot.gif" alt="">' 
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/explodyparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/fiestaparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/metalparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/revertitparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/tripletsparrot.gif" alt="">',
+    '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/unicornparrot.gif" alt="">' 
 ];
 
 function somaTimer (){
@@ -50,10 +50,10 @@ function insereCartas(){
     for(let i = 0; i < qtdCartas; i++){
         divCards.innerHTML += `
         <div data-test="card" class="slotCarta" onclick="virar(this)">
-            <div data-test="face-down-image" class="cartaEstilo carta1">                
-                <img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
+            <div class="cartaEstilo carta1">                
+                <img data-test="face-down-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
             </div>
-            <div data-test="face-up-image" class="cartaEstilo back-face carta2">
+            <div class="cartaEstilo back-face carta2">
                 ${ordemCartas[i]}
             </div>
             </div>
