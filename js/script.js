@@ -4,16 +4,22 @@ let cartaClicada = [];
 let cartasViradas = [];
 let pares = 0;
 let contagemClicks = 0;
+let timer = 0;
+let idTimer;
 
 let figuraCartas = [
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/explodyparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/fiestaparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/metalparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/revertitparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/tripletsparrot.gif" alt="">',
-    '<image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/unicornparrot.gif" alt="">' 
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/explodyparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/fiestaparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/metalparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/revertitparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/tripletsparrot.gif" alt="">',
+    '<img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/unicornparrot.gif" alt="">' 
 ];
+
+function somaTimer (){
+    timer++;
+}
 
 function comparador() { 
 	return Math.random() - 0.5; 
@@ -45,7 +51,7 @@ function insereCartas(){
         divCards.innerHTML += `
         <div data-test="card" class="slotCarta" onclick="virar(this)">
             <div data-test="face-down-image" class="cartaEstilo carta1">                
-                <image src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
+                <img src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/back.png" alt="">
             </div>
             <div data-test="face-up-image" class="cartaEstilo back-face carta2">
                 ${ordemCartas[i]}
@@ -112,4 +118,5 @@ function desvira(){
 figuraCartas.sort(comparador);
 quantidadeCartas();
 cartasJogo();
-insereCartas(); 
+insereCartas();
+idTimer = setInterval(somaTimer, 1000);
