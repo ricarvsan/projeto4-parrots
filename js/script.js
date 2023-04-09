@@ -107,7 +107,7 @@ function virar(carta){
         if(pares === qtdCartas / 2) {
             clearInterval(idTimer);
             alert(`Você ganhou em ${contagemClicks} jogadas! A duração do jogo foi de ${timer} segundos!`);
-            imDeJogo();
+            fimDeJogo();
         }
     }
       
