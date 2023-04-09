@@ -6,11 +6,7 @@ let pares = 0;
 let contagemClicks = 0;
 let timer = 0;
 let idTimer;
-let jogo = 1;
-let totalClicado = 0;
 let cartasAbertas = [];
-let cartaVirada = true;
-let x;
 
 let figuraCartas = [
     '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
@@ -136,11 +132,12 @@ function desvira(){
 }
 
 function fimDeJogo(){
-    let jogarNovamente = prompt('Vocẽ gostaria de reiniciar a partida? (sim ou não)')
+    let jogarNovamente = prompt('Você gostaria de reiniciar a partida? (sim ou não)')
     if (jogarNovamente === 'sim') {
-        resetVariaveis();
+        /* resetVariaveis();
         resetHTML();
-        iniciaJogo();
+        iniciaJogo(); */
+        location.reload();
     } else if (jogarNovamente === 'não'){
         return;
     } else {
@@ -148,7 +145,7 @@ function fimDeJogo(){
     }
 }
 
-function resetVariaveis(){
+/* function resetVariaveis(){
     qtdCartas = 0;
     ordemCartas = [];
     cartaClicada = [];
@@ -158,7 +155,6 @@ function resetVariaveis(){
     contagemClicks = 0;
     timer = 0;
     idTimer;
-    jogo = 1;
 }
 
 function resetHTML(){
@@ -166,7 +162,7 @@ function resetHTML(){
     divCards.innerHTML = ``;
     divTimer = document.querySelector('.timer');
     divTimer.innerHTML = 0;    
-}
+} */
 
 function iniciaJogo(){
     figuraCartas.sort(comparador);
