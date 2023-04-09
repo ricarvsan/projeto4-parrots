@@ -6,6 +6,11 @@ let pares = 0;
 let contagemClicks = 0;
 let timer = 0;
 let idTimer;
+let jogo = 1;
+let totalClicado = 0;
+let cartasAbertas = [];
+let cartaVirada = true;
+let x;
 
 let figuraCartas = [
     '<img data-test="face-up-image" src="./projeto__parrots__imagens/Arquivos Úteis - Projeto 04 - Parrot Card Game/bobrossparrot.gif" alt="">',
@@ -19,6 +24,12 @@ let figuraCartas = [
 
 function somaTimer (){
     timer++;
+    atualizaTimer();
+}
+
+function atualizaTimer(){
+    divTimer = document.querySelector('.timer');
+    divTimer.innerHTML = timer;
 }
 
 function comparador() { 
@@ -62,40 +73,44 @@ function insereCartas(){
 }
 
 function virar(carta){
-    contagemClicks++;
+    carta.classList.add('clicado');
 
-    if(cartaClicada.length > 1){
-        cartaClicada.pop();
-        cartaClicada.pop();
-    }
+    if(!(carta === cartaClicada[0]) && (cartaClicada.length < 2)){
+        contagemClicks++;    
 
-    cartaClicada.push(carta);
-    cartasViradas.push(carta.innerHTML);
+        cartaClicada.push(carta);
+        cartasViradas.push(carta.innerHTML);
 
-    if(cartasViradas.length > 1){
-        if(cartasViradas[0] === cartasViradas[1]){
-            console.log('iguais');
-            pares++;
-            
-            cartasViradas.pop();
-            cartasViradas.pop();
-        } else {
-            console.log('diferentes');
-            cartasViradas.pop();
-            cartasViradas.pop();
-            setTimeout(desvira, 1000);
+        if(cartasViradas.length > 1){
+            if(cartasViradas[0] === cartasViradas[1]){
+                pares++;
+                cartasAbertas.push(cartasViradas[0]);
+                cartasAbertas.push(cartasViradas[1]);
+                        
+                cartasViradas.pop();
+                cartasViradas.pop();
+                cartaClicada.pop();
+                cartaClicada.pop();
+            } else {
+                cartasViradas.pop();
+                cartasViradas.pop();
+                setTimeout(desvira, 1000);
+            }
+        }
+
+        const carta1 = carta.querySelector(".carta1");
+        carta1.classList.toggle("front");
+
+        const carta2 = carta.querySelector(".carta2");
+        carta2.classList.toggle("back");
+
+        if(pares === qtdCartas / 2) {
+            clearInterval(idTimer);
+            alert(`Você ganhou em ${contagemClicks} jogadas! A duração do jogo foi de ${timer} segundos!`);
+            imDeJogo();
         }
     }
-
-    const carta1 = carta.querySelector(".carta1");
-    carta1.classList.toggle("front");
-
-    const carta2 = carta.querySelector(".carta2");
-    carta2.classList.toggle("back");
-
-    if(pares === qtdCartas / 2) {
-        alert(`Você ganhou em ${contagemClicks} jogadas!`);
-    }
+      
 }
 
 function desvira(){
@@ -110,13 +125,56 @@ function desvira(){
 
     carta2 = cartaClicada[1].querySelector(".carta2");
     carta2.classList.toggle("back");
+
+    let removeClicado = document.querySelector('.clicado');
+    removeClicado.classList.remove('clicado');
+    removeClicado = document.querySelector('.clicado');
+    removeClicado.classList.remove('clicado');    
+   
+    cartaClicada.pop();
+    cartaClicada.pop();  
 }
 
+function fimDeJogo(){
+    let jogarNovamente = prompt('Gostaria de reiniciar a partida? (sim ou não)')
+    if (jogarNovamente === 'sim') {
+        resetVariaveis();
+        resetHTML();
+        iniciaJogo();
+    } else if (jogarNovamente === 'não'){
+        return;
+    } else {
+        fimDeJogo();
+    }
+}
 
-// INICIO DO JOGO
+function resetVariaveis(){
+    qtdCartas = 0;
+    ordemCartas = [];
+    cartaClicada = [];
+    cartasViradas = [];
+    cartasFixas = [];
+    pares = 0;
+    contagemClicks = 0;
+    timer = 0;
+    idTimer;
+    jogo = 1;
+}
 
-figuraCartas.sort(comparador);
-quantidadeCartas();
-cartasJogo();
-insereCartas();
-idTimer = setInterval(somaTimer, 1000);
+function resetHTML(){
+    let divCards = document.querySelector('.cards');
+    divCards.innerHTML = ``;
+    divTimer = document.querySelector('.timer');
+    divTimer.innerHTML = 0;    
+}
+
+function iniciaJogo(){
+    figuraCartas.sort(comparador);
+    quantidadeCartas();
+    cartasJogo();
+    insereCartas();
+    idTimer = setInterval(somaTimer, 1000);
+}
+
+//PRIMEIRO INICIO DE JOGO
+iniciaJogo();
