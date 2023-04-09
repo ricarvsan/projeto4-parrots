@@ -136,7 +136,7 @@ function desvira(){
 }
 
 function fimDeJogo(){
-    let jogarNovamente = prompt('Gostaria de reiniciar a partida? (sim ou não)')
+    let jogarNovamente = prompt('Vocẽ gostaria de reiniciar a partida? (sim ou não)')
     if (jogarNovamente === 'sim') {
         resetVariaveis();
         resetHTML();
